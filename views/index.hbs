@@ -14,7 +14,7 @@
     </form>
 
     {{#if subdomain}}
-        <h2>Subdomain: {{subdomain}}.yourdomain.com</h2>
+        <h2>Subdomain: {{subdomain}}.{{mainDomain}}</h2>
         <img src="{{qrCode}}" alt="QR Code">
     {{/if}}
 
@@ -23,7 +23,8 @@
             event.preventDefault();
             const subdomain = document.getElementById("subdomainInput").value.trim();
             if (subdomain) {
-                window.location.href = `https://${subdomain}.yourdomain.com`;
+                const mainDomain = "{{mainDomain}}"; // Dynamically set from the server
+                window.location.href = `https://${subdomain}.${mainDomain}`;
             }
         });
     </script>
