@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Code Generator</title>
+</head>
+<body>
+    <h1>Enter a Subdomain</h1>
+    
+    <form id="subdomainForm">
+        <input type="text" id="subdomainInput" placeholder="Enter subdomain">
+        <button type="submit">Generate QR</button>
+    </form>
+
+    {{#if subdomain}}
+        <h2>Subdomain: {{subdomain}}.yourdomain.com</h2>
+        <img src="{{qrCode}}" alt="QR Code">
+    {{/if}}
+
+    <script>
+        document.getElementById("subdomainForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            const subdomain = document.getElementById("subdomainInput").value.trim();
+            if (subdomain) {
+                window.location.href = `https://${subdomain}.yourdomain.com`;
+            }
+        });
+    </script>
+</body>
+</html>
